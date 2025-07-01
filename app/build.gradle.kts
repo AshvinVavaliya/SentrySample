@@ -51,9 +51,10 @@ dependencies {
     androidTestImplementation(libs.espresso.core)
 }
 
+
 sentry {
     org.set("simform-nq")
-    projectName.set("android")
+    projectName.set("sentry-sample")
 
     // this will upload your source code to Sentry to show it as part of the stack traces
     // disable if you don't want to expose your sources

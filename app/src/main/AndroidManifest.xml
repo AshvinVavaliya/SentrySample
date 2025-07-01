@@ -24,9 +24,9 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-    
+
     <!-- Required: set your sentry.io project identifier (DSN) -->
-    <meta-data android:name="io.sentry.dsn" android:value="https://c305f838f76af995973bf343af8fcc2b@o4509591568449536.ingest.us.sentry.io/4509591575658496" />
+    <meta-data android:name="io.sentry.dsn" android:value="https://b9e425690513fbe65add84f07240e6b3@o4509591568449536.ingest.us.sentry.io/4509592255660033" />
 
     <!-- enable automatic breadcrumbs for user interactions (clicks, swipes, scrolls) -->
     <meta-data android:name="io.sentry.traces.user-interaction.enable" android:value="true" />
