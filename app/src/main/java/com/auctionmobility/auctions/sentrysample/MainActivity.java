@@ -1,22 +1,22 @@
 package com.auctionmobility.auctions.sentrysample;
 
 import android.os.Bundle;
-import android.view.MenuItem;
 import android.view.Menu;
-
-import com.google.android.material.bottomnavigation.BottomNavigationView;
-import com.google.android.material.snackbar.Snackbar;
-import com.google.android.material.navigation.NavigationView;
+import android.view.MenuItem;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.navigation.fragment.NavHostFragment;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
-import androidx.appcompat.app.AppCompatActivity;
 
 import com.auctionmobility.auctions.sentrysample.databinding.ActivityMainBinding;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.android.material.navigation.NavigationView;
+import com.google.android.material.snackbar.Snackbar;
+
 import io.sentry.Sentry;
 
 public class MainActivity extends AppCompatActivity {
@@ -26,23 +26,12 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-    // waiting for view to draw to better represent a captured error with a screenshot
-    findViewById(android.R.id.content).getViewTreeObserver().addOnGlobalLayoutListener(() -> {
-      try {
-        throw new Exception("This app uses Sentry! :)");
-      } catch (Exception e) {
-        Sentry.captureException(e);
-      }
-    });
-
-
         ActivityMainBinding binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
         setSupportActionBar(binding.appBarMain.toolbar);
         if (binding.appBarMain.fab != null) {
-            binding.appBarMain.fab.setOnClickListener(view -> Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                    .setAction("Action", null).setAnchorView(R.id.fab).show());
+            binding.appBarMain.fab.setOnClickListener(view -> Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG).setAction("Action", null).setAnchorView(R.id.fab).show());
         }
         NavHostFragment navHostFragment = (NavHostFragment) getSupportFragmentManager().findFragmentById(R.id.nav_host_fragment_content_main);
         assert navHostFragment != null;
@@ -50,19 +39,14 @@ public class MainActivity extends AppCompatActivity {
 
         NavigationView navigationView = binding.navView;
         if (navigationView != null) {
-            mAppBarConfiguration = new AppBarConfiguration.Builder(
-                    R.id.nav_transform, R.id.nav_reflow, R.id.nav_slideshow, R.id.nav_settings)
-                    .setOpenableLayout(binding.drawerLayout)
-                    .build();
+            mAppBarConfiguration = new AppBarConfiguration.Builder(R.id.nav_transform, R.id.nav_reflow, R.id.nav_slideshow, R.id.nav_settings).setOpenableLayout(binding.drawerLayout).build();
             NavigationUI.setupActionBarWithNavController(this, navController, mAppBarConfiguration);
             NavigationUI.setupWithNavController(navigationView, navController);
         }
 
         BottomNavigationView bottomNavigationView = binding.appBarMain.contentMain.bottomNavView;
         if (bottomNavigationView != null) {
-            mAppBarConfiguration = new AppBarConfiguration.Builder(
-                    R.id.nav_transform, R.id.nav_reflow, R.id.nav_slideshow)
-                    .build();
+            mAppBarConfiguration = new AppBarConfiguration.Builder(R.id.nav_transform, R.id.nav_reflow, R.id.nav_slideshow).build();
             NavigationUI.setupActionBarWithNavController(this, navController, mAppBarConfiguration);
             NavigationUI.setupWithNavController(bottomNavigationView, navController);
         }
@@ -84,6 +68,7 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        item = null;
         if (item.getItemId() == R.id.nav_settings) {
             NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_content_main);
             navController.navigate(R.id.nav_settings);
@@ -94,7 +79,6 @@ public class MainActivity extends AppCompatActivity {
     @Override
     public boolean onSupportNavigateUp() {
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_content_main);
-        return NavigationUI.navigateUp(navController, mAppBarConfiguration)
-                || super.onSupportNavigateUp();
+        return NavigationUI.navigateUp(navController, mAppBarConfiguration) || super.onSupportNavigateUp();
     }
 }
