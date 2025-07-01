@@ -56,7 +56,9 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void initButton(TextView view) {
-        view.setText("Null TextView");
+        if (view != null) {
+            view.setText("Null TextView");
+        }
     }
 
     @Override
