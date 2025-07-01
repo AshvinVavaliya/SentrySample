@@ -26,15 +26,6 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-    // waiting for view to draw to better represent a captured error with a screenshot
-    findViewById(android.R.id.content).getViewTreeObserver().addOnGlobalLayoutListener(() -> {
-      try {
-        throw new Exception("This app uses Sentry! :)");
-      } catch (Exception e) {
-        Sentry.captureException(e);
-      }
-    });
-
 
         ActivityMainBinding binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
