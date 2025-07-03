@@ -15,7 +15,7 @@ public class Simulator {
             userProfiles.put(userId, "Name: User_" + userId.substring(5) + ", Role: Member");
         }
         userProfiles.remove("user_3");
-        for (String userId : userIds) {
+        for (String userId : userProfiles.keySet()) {
             System.out.println("Processing profile for " + userId);
             String profile = userProfiles.get(userId);
             String name = parseName(profile);
